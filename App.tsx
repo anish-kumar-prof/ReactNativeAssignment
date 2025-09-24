@@ -21,6 +21,13 @@ import CardGrid from './src/CardGrid';
 import MemoizedComp from './src/MemoizedComp';
 import CustomHook from './src/CustomHook';
 import DarkModeToggle from './src/DarkModeToggle';
+import PaginationExample from './src/PaginationExample';
+import LoginScreen from './src/Login/LoginScreen';
+import LocationExample from './src/LocationExample';
+import ExpenseList from './src/expenseTracker/screens/ExpenseList'
+import AddExpense from './src/expenseTracker/screens/AddExpense';
+import PieChartScreen from './src/expenseTracker/screens/PieChartScreen';
+import ProductList from './src/ProductList';
 // enableScreens(); // improves performance
 
 export type RootStackParamList = {
@@ -35,6 +42,13 @@ export type RootStackParamList = {
   MemoizedComp: undefined;
   CustomHook: undefined;
   DarkModeToggle: undefined;
+  PaginationExample: undefined;
+  LoginScreen: undefined;
+  LocationExample: undefined;
+  ExpenseList: undefined;
+  AddExpense: undefined;
+  PieChartScreen: undefined;
+  ProductList: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -103,6 +117,41 @@ function App() {
             name="DarkModeToggle"
             component={DarkModeToggle}
             options={{ title: 'Dark Mode Toggle' }}
+          />
+          <Stack.Screen
+          name='PaginationExample'
+          component={PaginationExample}
+          options={{ title: 'Pagination Example' }}
+          />
+          <Stack.Screen
+          name='LoginScreen'
+          component={LoginScreen}
+          options={{ title: 'Login' }}
+          />
+          <Stack.Screen
+          name='LocationExample'
+          component={LocationExample}
+          options={{ title: 'Location Example' }}
+          />
+          <Stack.Screen
+          name='ExpenseList'
+          component={ExpenseList}
+          options={{ title: 'ExpenseList Example' }}
+          />
+          <Stack.Screen
+          name='AddExpense'
+          component={AddExpense}
+          options={{ title: 'AddExpense Example' }}
+          />
+          <Stack.Screen
+          name='PieChartScreen'
+          component={PieChartScreen}
+          options={{ title: 'PieChart Example' }}
+          />
+          <Stack.Screen
+          name='ProductList'
+          component={ProductList}
+          options={{ title: 'ProductList Example' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

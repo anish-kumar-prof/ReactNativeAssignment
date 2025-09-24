@@ -19,6 +19,11 @@ const assignments: Assignment[] = [
   { id: '8', title: 'MemoizedComp' },
   { id: '9', title: 'CustomHook' },
   { id: '10', title: 'DarkModeToggle' },
+  { id: '11', title: 'PaginationExample' },
+  { id: '12', title: 'LoginScreen' },
+  { id: '13', title: 'LocationExample' },
+  { id: '14', title: 'ExpenseList' },
+  { id: '15', title: 'ProductList' },
 ];
 
 type Props = {
@@ -44,24 +49,40 @@ const AssignmentsList: React.FC<Props> = ({ navigation }) => {
       case '5':
         navigation.navigate('InputHandling');
         break;
-        case '6':
+      case '6':
         navigation.navigate('Todo');
         break;
-        case '7':
+      case '7':
         navigation.navigate('CardGrid');
         break;
-        case '8':
+      case '8':
         navigation.navigate('MemoizedComp');
         break;
-        case '9':
+      case '9':
         navigation.navigate('CustomHook');
         break;
-        case '10':
+      case '10':
         navigation.navigate('DarkModeToggle');
+        break;
+      case '11':
+        navigation.navigate('PaginationExample');
+        break;
+      case '12':
+        navigation.navigate('LoginScreen');
+        break;
+      case '13':
+        navigation.navigate('LocationExample');
+        break;
+      case '14':
+        navigation.navigate('ExpenseList');
+        break;
+        case '15':
+        navigation.navigate('ProductList');
         break;
       default:
         break;
     }
+    console.log(item);
   };
 
   const renderItem = ({ item }: { item: Assignment }) => (
