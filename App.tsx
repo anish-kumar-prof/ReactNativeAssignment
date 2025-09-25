@@ -28,6 +28,7 @@ import ExpenseList from './src/expenseTracker/screens/ExpenseList'
 import AddExpense from './src/expenseTracker/screens/AddExpense';
 import PieChartScreen from './src/expenseTracker/screens/PieChartScreen';
 import ProductList from './src/ProductList';
+import UserDash from './src/Login/UserDash';
 // enableScreens(); // improves performance
 
 export type RootStackParamList = {
@@ -49,6 +50,7 @@ export type RootStackParamList = {
   AddExpense: undefined;
   PieChartScreen: undefined;
   ProductList: undefined;
+  UserDash: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -152,6 +154,11 @@ function App() {
           name='ProductList'
           component={ProductList}
           options={{ title: 'ProductList Example' }}
+          />
+          <Stack.Screen
+          name='UserDash'
+          component={UserDash}
+          options={{ title: 'UserDash Example' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

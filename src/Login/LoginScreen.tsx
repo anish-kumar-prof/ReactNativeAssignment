@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -8,12 +8,35 @@ import {
   StyleSheet,
   Alert,
 } from "react-native";
+import EncryptedStorage from "react-native-encrypted-storage";
 import { login } from "./authService"; // <-- our login logic
 
 const LoginScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("eve.holt@reqres.in");
+  const [password, setPassword] = useState("pistol");
   const [loading, setLoading] = useState(false);
+
+  // Check for existing token when component mounts
+  useEffect(() => {
+    const checkExistingToken = async () => {
+      try {
+        const authData = await EncryptedStorage.getItem("auth");
+        if (authData) {
+          const { accessToken } = JSON.parse(authData);
+          if (accessToken) {
+            console.log("Existing token found, navigating to UserDash");
+            // Navigate to UserDash if token exists
+            navigation.replace("UserDash", { email: "eve.holt@reqres.in" });
+          }
+        }
+      } catch (error) {
+        console.error("Error checking existing token:", error);
+        // If there's an error, just stay on login screen
+      }
+    };
+
+    checkExistingToken();
+  }, [navigation]);
 
   const handleLogin = async () => {
     if (!email || !password) {
@@ -23,13 +46,14 @@ const LoginScreen = ({ navigation }: any) => {
 
     setLoading(true);
     try {
-      const { accessToken } = await login(email, password);
+      await login(email, password);
 
       Alert.alert("Success", "Logged in successfully ✅");
 
-      // Navigate to Home screen (after login success)
-      navigation.replace("Home"); // replace so user can't go back to login
+      // Navigate to UserDash screen with email parameter
+      navigation.replace("UserDash", { email });
     } catch (error) {
+      console.error("Login error:", error);
       Alert.alert("Login Failed", "Invalid credentials");
     } finally {
       setLoading(false);
